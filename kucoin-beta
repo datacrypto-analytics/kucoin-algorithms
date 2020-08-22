@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+@author: Felipe Soares
+"""
+import json
+import os
+import threading
+import datetime
+import time
+import base64
+import hashlib
+import hmac
+import requests
+#  MarketData
+from kucoin.client import Market
+#client = Market('https://api.kucoin.com')
+# client = Market()
+
+# or connect to Sandbox
+client = Market('https://openapi-sandbox.kucoin.com')
+client = Market(is_sandbox=True)
+
+# get symbol kline
+klines = client.get_kline('BTC-USDT','1min')
+
+# get symbol ticker
+server_time = client.get_server_timestamp()
+
+api_key = '@'
+api_secret = '@'
+api_passphrase = '@'
+# Trade
+from kucoin.client import Trade
+#client = Trade(api_key, api_secret, api_passphrase)
+
+# or connect to Sandbox
+client = Trade(api_key, api_secret, api_passphrase, is_sandbox=True)
+
+# place a limit buy order
+#order_id = client.create_limit_order('BTC-USDT', 'buy', '1', '8000')
+
+# place a market buy order   Use cautiously
+#order_id = client.create_market_order('BTC-USDT', 'buy', size='1')
+
+# cancel limit order
+#client.cancel_order('5bd6e9286d99522a52e458de')
+
+# User
+from kucoin.client import User
+#client = User(api_key, api_secret, api_passphrase)
+
+# or connect to Sandbox
+clientsandbox = User(api_key, api_secret, api_passphrase, is_sandbox=True)
+print(client)
+print(clientsandbox)
+
+url = 'https://openapi-sandbox.kucoin.com/api/v1/accounts'
+now = int(time.time() * 1000)
+str_to_sign = str(now) + 'GET' + '/api/v1/accounts'
+signature = base64.b64encode(
+    hmac.new(api_secret.encode('utf-8'), str_to_sign.encode('utf-8'), hashlib.sha256).digest())
+headers = {
+    "KC-API-SIGN": signature,
+    "KC-API-TIMESTAMP": str(now),
+    "KC-API-KEY": api_key,
+    "KC-API-PASSPHRASE": api_passphrase
+}
+response = requests.request('get', url, headers=headers)
+print(response.status_code)
+print(response.json())
+
+#Example for create deposit addresses in python
+url = 'https://openapi-sandbox.kucoin.com/api/v1/deposit-addresses'
+now = int(time.time() * 1000)
+data = {"currency": "BTC"}
+data_json = json.dumps(data)
+str_to_sign = str(now) + 'POST' + '/api/v1/deposit-addresses' + data_json
+signature = base64.b64encode(
+    hmac.new(api_secret.encode('utf-8'), str_to_sign.encode('utf-8'), hashlib.sha256).digest())
+headers = {
+    "KC-API-SIGN": signature,
+    "KC-API-TIMESTAMP": str(now),
+    "KC-API-KEY": api_key,
+    "KC-API-PASSPHRASE": api_passphrase,
+    "Content-Type": "application/json" # specifying content type or using json=data in request
+}
+response = requests.request('post', url, headers=headers, data=data_json)
+print(response.status_code)
+print(response.json())
