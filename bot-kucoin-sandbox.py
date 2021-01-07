@@ -11,8 +11,6 @@ api_key = '@'
 api_secret = '@'
 api_passphrase = '@'
 
-#client = Client(api_key, api_secret, api_passphrase)
-
 # or connect to Sandbox
 client = Client(api_key, api_secret, api_passphrase, sandbox=True)
 
