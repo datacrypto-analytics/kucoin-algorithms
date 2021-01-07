@@ -2,7 +2,7 @@
  
 
 
-Algorithms for KUCOIN Exchange
+Algorithms for learn API KUCOIN Exchange
 
 Instalar dependências se necessário 
 
