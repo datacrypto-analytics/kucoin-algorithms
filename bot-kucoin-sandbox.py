@@ -29,6 +29,10 @@ print(df)
 
 print(client)
 
+def amountBalance(amount, balance):
+    amount = df('balance')
+    return()
+    
 
 
 
