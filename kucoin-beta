@@ -42,7 +42,6 @@ from kucoin.client import User
 clientsandbox = User(api_key, api_secret, api_passphrase, is_sandbox=True)
 print(client)
 print(clientsandbox)
-
 url = 'https://openapi-sandbox.kucoin.com/api/v1/accounts'
 now = int(time.time() * 1000)
 str_to_sign = str(now) + 'GET' + '/api/v1/accounts'
@@ -74,4 +73,3 @@ headers = {
 }
 response = requests.request('post', url, headers=headers, data=data_json)
 print(response.status_code)
-print(response.json())
