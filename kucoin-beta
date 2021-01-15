@@ -38,8 +38,7 @@ client = Trade(api_key, api_secret, api_passphrase, is_sandbox=True)
 # User
 from kucoin.client import User
 #client = User(api_key, api_secret, api_passphrase)
-
-# or connect to Sandbox
+# Connect to Sandbox
 clientsandbox = User(api_key, api_secret, api_passphrase, is_sandbox=True)
 print(client)
 print(clientsandbox)
@@ -58,7 +57,6 @@ headers = {
 response = requests.request('get', url, headers=headers)
 print(response.status_code)
 print(response.json())
-
 #Example for create deposit addresses in python
 url = 'https://openapi-sandbox.kucoin.com/api/v1/deposit-addresses'
 now = int(time.time() * 1000)
