@@ -23,9 +23,7 @@ depth = client.get_order_book('BTC-USDT')
 
 klines = client.get_kline_data('BTC-USDT')
 
-
 df = pd.DataFrame(accounts)
-
 
 print(df)
 
