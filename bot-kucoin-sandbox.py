@@ -13,16 +13,12 @@ api_passphrase = '@'
 
 # Connect to Sandbox
 client = Client(api_key, api_secret, api_passphrase, sandbox=True)
-
 accounts = client.get_accounts()
-
 currencies = client.get_currencies()
 
 # get currencies
 depth = client.get_order_book('BTC-USDT')
-
 klines = client.get_kline_data('BTC-USDT')
-
 df = pd.DataFrame(accounts)
 
 print(df)
@@ -32,7 +28,7 @@ print(client)
 def amountBalance(amount, balance):
     amount = df('balance')
     return()
-    
+
 
 
 

@@ -17,7 +17,7 @@ from kucoin.client import Market
 #client = Market('https://api.kucoin.com')
 # client = Market()
 
-# or connect to Sandbox
+# Connect to Sandbox
 client = Market('https://openapi-sandbox.kucoin.com')
 client = Market(is_sandbox=True)
 
@@ -33,11 +33,8 @@ api_passphrase = '@'
 # Trade
 from kucoin.client import Trade
 #client = Trade(api_key, api_secret, api_passphrase)
-
 # or connect to Sandbox
 client = Trade(api_key, api_secret, api_passphrase, is_sandbox=True)
-
-
 # User
 from kucoin.client import User
 #client = User(api_key, api_secret, api_passphrase)
