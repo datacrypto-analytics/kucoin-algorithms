@@ -11,7 +11,7 @@ api_key = '@'
 api_secret = '@'
 api_passphrase = '@'
 
-# or connect to Sandbox
+# Connect to Sandbox
 client = Client(api_key, api_secret, api_passphrase, sandbox=True)
 
 accounts = client.get_accounts()
